@@ -69,9 +69,16 @@ end
 
 ## [ Lint Tasks ] #############################################################
 
-desc 'Lint the CLI code'
-task :lint do |task|
-  plain("PROJECT_DIR=. ./scripts/swiftlint-code.sh", task)
+namespace :lint do
+  desc 'Lint the CLI code'
+  task :code do |task|
+    plain("PROJECT_DIR=. ./scripts/swiftlint-code.sh", task)
+  end
+
+  desc 'Lint the Podspec'
+  task :pod do |task|
+    plain("pod lib lint SwiftGen.podspec --quick", task)
+  end
 end
 
 ## [ Build Tasks ] ############################################################
